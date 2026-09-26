@@ -1,0 +1,7 @@
+<div class="mits-cn-toast mits-cn-toast--{$toast_position}" data-mits-cn-toast>
+  {if $dismissible}<button type="button" class="mits-cn-close" data-mits-cn-close aria-label="{$label_close}">&times;</button>{/if}
+  {if $title != ''}<div class="mits-cn-title">{$title}</div>{/if}
+  {if $content != ''}<div class="mits-cn-content">{$content}</div>{/if}
+  {if $countdown}<div class="mits-cn-countdown" data-mits-cn-countdown data-end="{$end_timestamp}" data-days="{$label_days}" data-hours="{$label_hours}" data-minutes="{$label_minutes}" data-seconds="{$label_seconds}"></div>{/if}
+  {if $button_text != '' && $button_url != ''}<div class="mits-cn-actions"><a class="mits-cn-button" href="{$button_url}">{$button_text}</a></div>{/if}
+</div>

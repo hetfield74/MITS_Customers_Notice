@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MITS Kundenhinweise - Installationsanleitung</title>
+<style>
+:root{--bg:#f4f8f7;--card:#ffffff;--line:#d7e8e3;--text:#273532;--muted:#5e706a;--brand:#4f8e7e;--brand-2:#edf7f4;--accent:#30534b;--warn:#fff4dd;--warn-line:#efd7a3;--ok:#eaf7f1;--ok-line:#c7dfd6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.65 Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f8fbfa 0%,#eef5f3 100%);color:var(--text)}a{color:#1f6d5f}a:hover{text-decoration:none}.wrap{max-width:1120px;margin:0 auto;padding:32px 20px 56px}.hero{background:linear-gradient(135deg,#ffffff 0%,#edf7f4 100%);border:1px solid var(--line);border-radius:28px;padding:32px 34px;box-shadow:0 18px 40px rgba(62,99,90,.10)}.eyebrow{display:inline-block;padding:7px 12px;border-radius:999px;background:#e5f2ee;color:var(--brand);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase}.hero h1{margin:14px 0 12px;font-size:34px;line-height:1.2;color:var(--accent)}.hero p{margin:0;color:var(--muted);max-width:850px}.hero__meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.hero__meta span{display:inline-flex;align-items:center;padding:9px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;align-items:start;margin-top:24px}.toc,.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 34px rgba(62,99,90,.08)}.toc{position:sticky;top:20px;padding:22px}.toc h2{margin:0 0 12px;font-size:18px;color:var(--accent)}.toc ol{margin:0;padding-left:18px}.toc li+li{margin-top:8px}.toc a{text-decoration:none;color:var(--text)}.toc a:hover{color:var(--brand)}.content{display:grid;gap:20px}.card{padding:26px 28px}.card h2{margin:0 0 14px;font-size:24px;color:var(--accent)}.card h3{margin:24px 0 10px;font-size:18px;color:var(--accent)}.card p{margin:0 0 14px}.card ul,.card ol{margin:0 0 14px;padding-left:22px}.card li+li{margin-top:8px}.lead{font-size:17px;color:#425650}.note,.warn,.ok{padding:14px 16px;border-radius:16px;margin-top:14px}.note{background:var(--brand-2);border:1px solid var(--line)}.warn{background:var(--warn);border:1px solid var(--warn-line)}.ok{background:var(--ok);border:1px solid var(--ok-line)}.kbd{display:inline-block;padding:2px 8px;border-radius:8px;background:#f0f4f3;border:1px solid #d7e3df;font-family:"Courier New",monospace;font-size:14px}.table{width:100%;border-collapse:collapse;margin-top:12px}.table th,.table td{padding:12px 14px;border:1px solid var(--line);text-align:left;vertical-align:top}.table th{background:#f3faf7;color:var(--accent)}pre{margin:12px 0 16px;padding:14px 16px;overflow:auto;border:1px solid var(--line);border-radius:14px;background:#f7faf9;color:#263b35;font:14px/1.5 Consolas,"Courier New",monospace}.footer{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}@media (max-width:920px){.grid{grid-template-columns:1fr}.toc{position:static}}@media (max-width:620px){.wrap{padding:18px 12px 36px}.hero,.card{padding:20px}.hero h1{font-size:28px}.table{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">MITS Kundenhinweise</span>
+    <h1>Installationsanleitung</h1>
+    <p>Diese Anleitung beschreibt die Installation und Ersteinrichtung von <strong>MITS Kundenhinweise</strong> in der modified eCommerce Shopsoftware. Die Installation kommt ohne manuellen SQL-Import und ohne &Auml;nderungen an Core-Dateien aus.</p>
+    <div class="hero__meta">
+      <span>Version 1.0.6</span>
+      <span>modified ab 2.0.6.0</span>
+      <span>PHP 8.x</span>
+      <span>Zielgruppe: Shopbetreiber &amp; Agenturen</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <aside class="toc">
+      <h2>Inhalt</h2>
+      <ol>
+        <li><a href="#ueberblick">System&uuml;berblick</a></li>
+        <li><a href="#voraussetzungen">Voraussetzungen</a></li>
+        <li><a href="#backup">Backup</a></li>
+        <li><a href="#upload">Datei-Upload</a></li>
+        <li><a href="#installation">Systemmodul installieren</a></li>
+        <li><a href="#assets">CSS und JavaScript</a></li>
+        <li><a href="#templates">Shoptemplate und Overrides</a></li>
+        <li><a href="#migration">Altes Modul migrieren</a></li>
+        <li><a href="#test">Funktionstest</a></li>
+        <li><a href="#update">Update und Deinstallation</a></li>
+      </ol>
+    </aside>
+
+    <main class="content">
+      <section class="card" id="ueberblick">
+        <h2>1. System&uuml;berblick</h2>
+        <p class="lead">MITS Kundenhinweise zeigt frei konfigurierbare Hinweise im Shop an. Inhalte, Darstellungsart, Zeitraum, Zielgruppen und Seiten k&ouml;nnen unabh&auml;ngig voneinander eingestellt werden.</p>
+        <ul>
+          <li>Hinweisbox, wichtiger Hinweis, Top-Bar, Modal/Popup und Toast</li>
+          <li>mehrsprachige Inhalte mit optionaler Frontend-&Uuml;berschrift</li>
+          <li>Moduloberfl&auml;che in Deutsch, Englisch, Franz&ouml;sisch, Italienisch, Spanisch, Niederl&auml;ndisch und Polnisch</li>
+          <li>Zeitsteuerung, Countdown und unterschiedliche Anzeigeh&auml;ufigkeiten</li>
+          <li>Filter nach Seiten, Kundengruppen, Kunden, L&auml;ndern, Newsletterstatus sowie Kategorie-, Artikel- und Hersteller-IDs</li>
+          <li>automatische oder manuelle Platzierung im Shoptemplate</li>
+          <li>updatesichere Template-Overrides</li>
+          <li>optionale Migration des alten Fremdmoduls <span class="kbd">customers_notice</span></li>
+        </ul>
+        <div class="ok"><strong>Keine Core-&Auml;nderungen:</strong> Die Installation erfolgt &uuml;ber die normalen Erweiterungspunkte der modified Shopsoftware.</div>
+      </section>
+
+      <section class="card" id="voraussetzungen">
+        <h2>2. Voraussetzungen</h2>
+        <ul>
+          <li>modified eCommerce Shopsoftware ab Version 2.0.6.0</li>
+          <li>PHP 8.x</li>
+          <li>funktionierender Admin-Zugang</li>
+          <li>Dateizugriff per FTP, SFTP oder Hosting-Dateimanager</li>
+          <li>JavaScript im Browser f&uuml;r automatische Platzierung, Modal/Toast, Countdown und Drag &amp; Drop</li>
+        </ul>
+
+        <h3>Unterst&uuml;tzte Shoptemplates</h3>
+        <p>Das Modul ist nicht auf ein einzelnes Template fest verdrahtet. Die folgenden verbreiteten Templates sind bei der vorgesehenen Standardintegration ber&uuml;cksichtigt:</p>
+        <table class="table">
+          <tr><th>Template</th><th>Status</th></tr>
+          <tr><td><span class="kbd">mits_responsive_modern</span></td><td>unterst&uuml;tzt</td></tr>
+          <tr><td><span class="kbd">tpl_modified_responsive</span></td><td>unterst&uuml;tzt</td></tr>
+          <tr><td><span class="kbd">tpl_modified_nova</span></td><td>unterst&uuml;tzt</td></tr>
+          <tr><td><span class="kbd">bootstrap5</span></td><td>unterst&uuml;tzt</td></tr>
+          <tr><td><span class="kbd">bootstrap5a</span></td><td>unterst&uuml;tzt</td></tr>
+        </table>
+        <p>Auch eigene oder weitere modified-Templates k&ouml;nnen verwendet werden. Falls die automatische Position nicht passt, kann pro Hinweis ein eigener CSS-Selektor eingetragen oder die manuelle Smarty-Platzierung verwendet werden.</p>
+      </section>
+
+      <section class="card" id="backup">
+        <h2>3. Vor der Installation: Backup</h2>
+        <p>Erstellen Sie vor der Installation eine aktuelle Sicherung von Shopdateien und Datenbank.</p>
+        <div class="warn">Auch wenn das Modul keine Core-Dateien ersetzt und seine eigenen Tabellen automatisch anlegt, sollte eine neue Erweiterung zuerst mit einem aktuellen Backup installiert werden.</div>
+      </section>
+
+      <section class="card" id="upload">
+        <h2>4. Datei-Upload</h2>
+        <ol>
+          <li>Entpacken Sie das Modularchiv lokal.</li>
+          <li>&Ouml;ffnen Sie den enthaltenen Ordner <span class="kbd">shoproot</span>.</li>
+          <li>Kopieren Sie den kompletten Inhalt von <span class="kbd">shoproot</span> in das Hauptverzeichnis Ihres Shops.</li>
+          <li>Best&auml;tigen Sie das Zusammenf&uuml;hren vorhandener Verzeichnisse.</li>
+        </ol>
+        <div class="note"><strong>Umbenanntes Adminverzeichnis:</strong> Wenn Ihr Shop nicht den Ordner <span class="kbd">admin</span> verwendet, kopieren Sie den Inhalt von <span class="kbd">shoproot/admin</span> in Ihr tats&auml;chliches Adminverzeichnis.</div>
+        <p>Es wird keine vorhandene Shop-Core-Datei &uuml;berschrieben. Die Dateien des Moduls liegen in eigenen Modul- und Extra-Verzeichnissen.</p>
+      </section>
+
+      <section class="card" id="installation">
+        <h2>5. Systemmodul installieren</h2>
+        <ol>
+          <li>Melden Sie sich im Adminbereich an.</li>
+          <li>Rufen Sie <span class="kbd">Module &gt; System Module</span> auf.</li>
+          <li>W&auml;hlen Sie <strong>MITS Kundenhinweise</strong>.</li>
+          <li>Installieren bzw. aktivieren Sie das Modul.</li>
+        </ol>
+        <p>Das Modul legt die ben&ouml;tigten Datenbanktabellen und Konfigurationseintr&auml;ge automatisch an. Ein SQL-Import per phpMyAdmin ist nicht notwendig.</p>
+
+        <h3>Wichtige Moduleinstellungen</h3>
+        <table class="table">
+          <tr><th>Einstellung</th><th>Empfehlung / Bedeutung</th></tr>
+          <tr><td>Status</td><td>Aktiviert oder deaktiviert die Frontend-Ausgabe des Moduls.</td></tr>
+          <tr><td>Standard CSS-Selektor</td><td>Ziel f&uuml;r automatisch platzierte Inline-Hinweise. Die Vorgabe deckt verbreitete modified-Templates ab.</td></tr>
+          <tr><td>CSS-/JavaScript-Einbindung</td><td><strong>external</strong> ist die empfohlene Standardauswahl. Weitere Varianten siehe n&auml;chster Abschnitt.</td></tr>
+          <tr><td>Hinweise pro Seite in der Administration</td><td>Legt die Standardanzahl der Eintr&auml;ge in der Verwaltungs&uuml;bersicht fest.</td></tr>
+        </table>
+
+        <p>Nach erfolgreicher Installation finden Sie die Verwaltung unter <span class="kbd">Kunden &gt; MITS Kundenhinweise</span>.</p>
+        <div class="note"><strong>CSRF-Schutz:</strong> Schreibende Admin-Aktionen verwenden das CSRF-System der modified Shopsoftware. Ist das CSRF-System im Shop aktiviert, werden die Tokens automatisch von modified erzeugt und gepr&uuml;ft.</div>
+      </section>
+
+      <section class="card" id="assets">
+        <h2>6. CSS- und JavaScript-Einbindung</h2>
+        <p>Im Systemmodul stehen drei Betriebsarten zur Auswahl.</p>
+        <table class="table">
+          <tr><th>Modus</th><th>Geeignet f&uuml;r</th><th>Verhalten</th></tr>
+          <tr><td><strong>external</strong></td><td>die meisten Shops</td><td>CSS und JavaScript werden automatisch als cachef&auml;hige Moduldateien geladen.</td></tr>
+          <tr><td><strong>manual</strong></td><td>optimierte Templates mit eigener Dateikombinierung</td><td>Das Modul bindet keine Assets selbst ein. CSS und JavaScript werden durch das Shoptemplate geladen und k&ouml;nnen dort kombiniert bzw. komprimiert werden.</td></tr>
+          <tr><td><strong>inline</strong></td><td>Sonderf&auml;lle</td><td>CSS und JavaScript werden direkt in die HTML-Seite geschrieben. Zus&auml;tzliche Requests entfallen, die Dateien k&ouml;nnen aber nicht separat vom Browser gecacht werden.</td></tr>
+        </table>
+        <div class="ok"><strong>Empfehlung:</strong> Verwenden Sie <span class="kbd">external</span>, wenn Sie keine spezielle Asset-B&uuml;ndelung im Template einsetzen. Bei einem optimierten Template mit eigener Komprimierung ist <span class="kbd">manual</span> meist die bessere Wahl.</div>
+
+        <h3>Manuelle CSS-Einbindung</h3>
+        <p>Kopieren Sie zuerst die Moduldatei</p>
+        <p><span class="kbd">includes/external/mits_customers_notice/css/mits_customers_notice.css</span></p>
+        <p>nach</p>
+        <p><span class="kbd">templates/&lt;DEIN_TEMPLATE&gt;/css/mits_customers_notice.css</span>.</p>
+        <p>Danach kann die Datei bei modified-Templates mit <span class="kbd">general_bottom.css.php</span> vor dem vorhandenen <span class="kbd">$css_min</span>-/Komprimierungsblock erg&auml;nzt werden:</p>
+<pre>if (is_file(DIR_FS_CATALOG . DIR_TMPL_CSS . 'mits_customers_notice.css')) {
+    $css_array[] = DIR_TMPL_CSS . 'mits_customers_notice.css';
+}</pre>
+
+        <h3>Manuelle JavaScript-Einbindung</h3>
+        <p>Kopieren Sie zuerst</p>
+        <p><span class="kbd">includes/external/mits_customers_notice/js/mits_customers_notice.js</span></p>
+        <p>nach</p>
+        <p><span class="kbd">templates/&lt;DEIN_TEMPLATE&gt;/javascript/mits_customers_notice.js</span>.</p>
+        <p>In <span class="kbd">general_bottom.js.php</span> kann vor dem vorhandenen <span class="kbd">$script_min</span>-/Komprimierungsblock erg&auml;nzt werden:</p>
+<pre>if (is_file(DIR_FS_CATALOG . DIR_TMPL_JS . 'mits_customers_notice.js')) {
+    $script_array[] = DIR_TMPL_JS . 'mits_customers_notice.js';
+}</pre>
+        <p>Damit werden beide Dateien zusammen mit den &uuml;brigen Template-Dateien &uuml;ber die vorhandene modified-Komprimierung verarbeitet.</p>
+        <div class="note"><strong>Hinweis zu DIR_WS_BASE:</strong> In den Arrays von <span class="kbd">general_bottom.css.php</span> und <span class="kbd">general_bottom.js.php</span> werden relative Template-Pfade verwendet. <span class="kbd">DIR_WS_BASE</span> wird von modified erst bei der sp&auml;teren Ausgabe von <span class="kbd">href</span> bzw. <span class="kbd">src</span> vorangestellt.</div>
+      </section>
+
+      <section class="card" id="templates">
+        <h2>7. Shoptemplate und Template-Overrides</h2>
+        <p>Das Modul bringt eigene Standardvorlagen mit:</p>
+        <ul>
+          <li><span class="kbd">notice.html</span> &ndash; normaler Hinweis</li>
+          <li><span class="kbd">important.html</span> &ndash; wichtiger Hinweis</li>
+          <li><span class="kbd">topbar.html</span> &ndash; Hinweisleiste</li>
+          <li><span class="kbd">modal.html</span> &ndash; Modal/Popup</li>
+          <li><span class="kbd">toast.html</span> &ndash; schwebender Toast</li>
+        </ul>
+        <p>Die Standarddateien liegen unter:</p>
+        <p><span class="kbd">includes/external/mits_customers_notice/templates/module/</span></p>
+        <p>Updatesichere Anpassungen k&ouml;nnen im aktiven Shoptemplate angelegt werden:</p>
+        <p><span class="kbd">templates/&lt;DEIN_TEMPLATE&gt;/module/mits_customers_notice/</span></p>
+        <p>Eine dort vorhandene Datei mit gleichem Namen hat automatisch Vorrang vor der Modulvorlage. Im Adminbereich werden nur tats&auml;chlich vorhandene <span class="kbd">.html</span>-Vorlagen im Dropdown angeboten.</p>
+
+        <h3>CSS-Override</h3>
+        <p>F&uuml;r eine eigene Gestaltung kann zus&auml;tzlich folgende Datei im aktiven Template angelegt werden:</p>
+        <p><span class="kbd">templates/&lt;DEIN_TEMPLATE&gt;/css/mits_customers_notice.css</span></p>
+
+        <h3>Manuelle Position im Template</h3>
+        <p>Wird bei einem Hinweis die Platzierung <strong>Manuell per Smarty</strong> gew&auml;hlt, steht der gerenderte Inhalt &uuml;ber folgende Variable zur Verf&uuml;gung:</p>
+        <p><span class="kbd">{$MITS_CUSTOMERS_NOTICE}</span></p>
+      </section>
+
+      <section class="card" id="migration">
+        <h2>8. Optional: Altes Fremdmodul migrieren</h2>
+        <p>Wenn die alten Tabellen <span class="kbd">customers_notice</span> und <span class="kbd">customers_notice_description</span> vorhanden sind, erkennt MITS Kundenhinweise die importierbaren Eintr&auml;ge automatisch.</p>
+        <ol>
+          <li>Installieren Sie zuerst MITS Kundenhinweise.</li>
+          <li>&Ouml;ffnen Sie <span class="kbd">Kunden &gt; MITS Kundenhinweise</span>.</li>
+          <li>&Ouml;ffnen Sie die angebotene Migrationsvorschau.</li>
+          <li>Pr&uuml;fen Sie Titel, Darstellungsart und eventuell markierte Sondertemplates.</li>
+          <li>Starten Sie erst danach den Import.</li>
+          <li>Pr&uuml;fen Sie die importierten Hinweise im Frontend.</li>
+          <li>Deaktivieren Sie anschlie&szlig;end die Frontend-Ausgabe des alten Fremdmoduls.</li>
+        </ol>
+        <div class="note">Die Migration ist nicht destruktiv. Die alten Tabellen werden weder ge&auml;ndert noch gel&ouml;scht. Bereits importierte Legacy-IDs werden bei einem erneuten Import &uuml;bersprungen.</div>
+      </section>
+
+      <section class="card" id="test">
+        <h2>9. Empfohlener Funktionstest</h2>
+        <ol>
+          <li>Erstellen Sie unter <span class="kbd">Kunden &gt; MITS Kundenhinweise</span> einen neuen Testhinweis.</li>
+          <li>Vergeben Sie einen eindeutigen <strong>internen Titel</strong>.</li>
+          <li>Tragen Sie einen kurzen Inhalt in der gew&uuml;nschten Sprache ein.</li>
+          <li>W&auml;hlen Sie zun&auml;chst <strong>Hinweis</strong>, <strong>Automatisch</strong> und <strong>Immer anzeigen</strong>.</li>
+          <li>Beschr&auml;nken Sie den Test unter <strong>Seiten</strong> z. B. auf die Startseite.</li>
+          <li>Aktivieren und speichern Sie den Hinweis.</li>
+          <li>Rufen Sie die betreffende Shopseite in einem privaten Browserfenster auf.</li>
+        </ol>
+        <p>Pr&uuml;fen Sie danach bei Bedarf zus&auml;tzlich:</p>
+        <ul>
+          <li>Schlie&szlig;en und Anzeigeh&auml;ufigkeit</li>
+          <li>Start- und Endzeit</li>
+          <li>Modal oder Toast</li>
+          <li>Toast-Position auf Desktop und Smartphone</li>
+          <li>Button-Darstellung und Linkziel</li>
+          <li>Kundengruppen- und Seitenfilter</li>
+        </ul>
+      </section>
+
+      <section class="card" id="update">
+        <h2>10. Update und Deinstallation</h2>
+        <h3>Update</h3>
+        <ol>
+          <li>Erstellen Sie ein aktuelles Backup.</li>
+          <li>Kopieren Sie den Inhalt des neuen Ordners <span class="kbd">shoproot</span> &uuml;ber die vorhandenen Moduldateien.</li>
+          <li>Rufen Sie <span class="kbd">Module &gt; System Module</span> auf.</li>
+          <li>W&auml;hlen Sie <strong>MITS Kundenhinweise</strong>.</li>
+          <li>F&uuml;hren Sie die angebotene <strong>Modulaktualisierung</strong> aus.</li>
+        </ol>
+        <p>Fehlende Datenbankfelder und neue Moduleinstellungen werden von der Update-Routine automatisch nachgezogen.</p>
+
+        <h3>Deinstallation</h3>
+        <p>Beim normalen Entfernen des Systemmoduls werden die Modulkonfiguration und das Adminrecht entfernt. Die drei MITS-Datentabellen bleiben absichtlich erhalten, damit angelegte Kundenhinweise bei einer sp&auml;teren Neuinstallation nicht verloren gehen.</p>
+        <p>Nach der Deinstallation erscheint im Bereich <span class="kbd">Module &gt; System Module</span> der rote Button <strong>MITS Kundenhinweise komplett vom Server entfernen</strong>. Damit werden die mitgelieferten Moduldateien automatisch aus dem Shop entfernt.</p>
+        <div class="note"><strong>Eigene Anpassungen bleiben erhalten:</strong> Selbst angelegte Template-Overrides sowie im Modus <span class="kbd">manual</span> in das aktive Template kopierte CSS-/JavaScript-Dateien werden nicht automatisch gel&ouml;scht. So gehen individuelle Template-Anpassungen nicht versehentlich verloren.</div>
+      </section>
+    </main>
+  </div>
+
+  <div class="footer">MITS Kundenhinweise - Installationsanleitung - Version 1.0.6</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MITS Kundenhinweise - Bedienungsanleitung</title>
+<style>
+:root{--bg:#f4f8f7;--card:#ffffff;--line:#d7e8e3;--text:#273532;--muted:#5e706a;--brand:#4f8e7e;--brand-2:#edf7f4;--accent:#30534b;--warn:#fff4dd;--warn-line:#efd7a3;--ok:#eaf7f1;--ok-line:#c7dfd6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.65 Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f8fbfa 0%,#eef5f3 100%);color:var(--text)}a{color:#1f6d5f}a:hover{text-decoration:none}.wrap{max-width:1120px;margin:0 auto;padding:32px 20px 56px}.hero{background:linear-gradient(135deg,#ffffff 0%,#edf7f4 100%);border:1px solid var(--line);border-radius:28px;padding:32px 34px;box-shadow:0 18px 40px rgba(62,99,90,.10)}.eyebrow{display:inline-block;padding:7px 12px;border-radius:999px;background:#e5f2ee;color:var(--brand);font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase}.hero h1{margin:14px 0 12px;font-size:34px;line-height:1.2;color:var(--accent)}.hero p{margin:0;color:var(--muted);max-width:850px}.hero__meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.hero__meta span{display:inline-flex;align-items:center;padding:9px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;color:var(--muted)}.grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;align-items:start;margin-top:24px}.toc,.card{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 34px rgba(62,99,90,.08)}.toc{position:sticky;top:20px;padding:22px}.toc h2{margin:0 0 12px;font-size:18px;color:var(--accent)}.toc ol{margin:0;padding-left:18px}.toc li+li{margin-top:8px}.toc a{text-decoration:none;color:var(--text)}.toc a:hover{color:var(--brand)}.content{display:grid;gap:20px}.card{padding:26px 28px}.card h2{margin:0 0 14px;font-size:24px;color:var(--accent)}.card h3{margin:24px 0 10px;font-size:18px;color:var(--accent)}.card p{margin:0 0 14px}.card ul,.card ol{margin:0 0 14px;padding-left:22px}.card li+li{margin-top:8px}.lead{font-size:17px;color:#425650}.note,.warn,.ok{padding:14px 16px;border-radius:16px;margin-top:14px}.note{background:var(--brand-2);border:1px solid var(--line)}.warn{background:var(--warn);border:1px solid var(--warn-line)}.ok{background:var(--ok);border:1px solid var(--ok-line)}.kbd{display:inline-block;padding:2px 8px;border-radius:8px;background:#f0f4f3;border:1px solid #d7e3df;font-family:"Courier New",monospace;font-size:14px}.table{width:100%;border-collapse:collapse;margin-top:12px}.table th,.table td{padding:12px 14px;border:1px solid var(--line);text-align:left;vertical-align:top}.table th{background:#f3faf7;color:var(--accent)}.footer{margin-top:22px;color:var(--muted);font-size:14px;text-align:center}@media (max-width:920px){.grid{grid-template-columns:1fr}.toc{position:static}}@media (max-width:620px){.wrap{padding:18px 12px 36px}.hero,.card{padding:20px}.hero h1{font-size:28px}.table{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <span class="eyebrow">MITS Kundenhinweise</span>
+    <h1>Bedienungsanleitung</h1>
+    <p>Diese Anleitung erkl&auml;rt die t&auml;gliche Arbeit mit <strong>MITS Kundenhinweise</strong>: Hinweise anlegen, Inhalte pflegen, Darstellung ausw&auml;hlen, Seiten und Kundengruppen einschr&auml;nken, Zeitsteuerung verwenden und bestehende Hinweise verwalten.</p>
+    <div class="hero__meta">
+      <span>Version 1.0.6</span>
+      <span>Admin: Kunden &gt; MITS Kundenhinweise</span>
+      <span>Zielgruppe: Shopbetreiber &amp; Redakteure</span>
+    </div>
+  </section>
+
+  <div class="grid">
+    <aside class="toc">
+      <h2>Inhalt</h2>
+      <ol>
+        <li><a href="#einstieg">Einstieg</a></li>
+        <li><a href="#uebersicht">Verwaltungs&uuml;bersicht</a></li>
+        <li><a href="#anlegen">Hinweis anlegen</a></li>
+        <li><a href="#inhalte">Mehrsprachige Inhalte</a></li>
+        <li><a href="#darstellung">Darstellung und Templates</a></li>
+        <li><a href="#platzierung">Platzierung</a></li>
+        <li><a href="#zeit">Zeit und Anzeigeh&auml;ufigkeit</a></li>
+        <li><a href="#zielgruppen">Seiten und Zielgruppen</a></li>
+        <li><a href="#nosnippet">data-nosnippet</a></li>
+        <li><a href="#migration">Migration</a></li>
+        <li><a href="#beispiele">Praxisbeispiele</a></li>
+        <li><a href="#tipps">Tipps und Fehlersuche</a></li>
+      </ol>
+    </aside>
+
+    <main class="content">
+      <section class="card" id="einstieg">
+        <h2>1. Einstieg</h2>
+        <p class="lead">Die komplette Verwaltung finden Sie unter <span class="kbd">Kunden &gt; MITS Kundenhinweise</span>.</p>
+        <p>Die Verwaltung ist in zwei Bereiche aufgeteilt:</p>
+        <ul>
+          <li><strong>&Uuml;bersicht:</strong> vorhandene Hinweise suchen, filtern, sortieren, bl&auml;ttern, aktivieren oder bearbeiten</li>
+          <li><strong>Bearbeiten:</strong> Inhalt, Darstellung, Zeitraum, Seiten und Zielgruppen eines einzelnen Hinweises einstellen</li>
+        </ul>
+        <div class="ok">Der <strong>interne Titel</strong> dient nur der Verwaltung und wird niemals im Shop angezeigt. Dadurch k&ouml;nnen Hinweise auch ohne sichtbare Frontend-&Uuml;berschrift eindeutig benannt werden.</div>
+      </section>
+
+      <section class="card" id="uebersicht">
+        <h2>2. Verwaltungs&uuml;bersicht</h2>
+        <p>Oben sehen Sie Kennzahlen zu vorhandenen, aktiven, aktuell laufenden und geplanten Hinweisen. Darunter stehen Filter und die eigentliche Hinweisliste.</p>
+
+        <h3>Suchen und filtern</h3>
+        <ul>
+          <li>Suche nach internem Titel oder Frontend-&Uuml;berschrift</li>
+          <li>Filter nach Status</li>
+          <li>Filter nach Darstellungsart</li>
+          <li>Filter nach Besuchergruppe</li>
+          <li>Filter nach Zeitraum, z. B. aktuell, geplant oder abgelaufen</li>
+        </ul>
+
+        <h3>Sortieren</h3>
+        <p>Wichtige Spalten k&ouml;nnen direkt &uuml;ber die Tabellen&uuml;berschrift auf- oder absteigend sortiert werden.</p>
+
+        <h3>Bl&auml;ttern</h3>
+        <p>Bei vielen Hinweisen wird die Liste auf mehrere Seiten aufgeteilt. Unterhalb der Liste k&ouml;nnen Sie zwischen den Seiten wechseln. Die Anzahl der Eintr&auml;ge pro Seite kann ebenfalls angepasst werden.</p>
+
+        <h3>Reihenfolge per Drag &amp; Drop</h3>
+        <p>In der ungefilterten Sortieransicht k&ouml;nnen Hinweise am Griff mit der Maus verschoben werden. Die neue Sortierreihenfolge wird automatisch gespeichert.</p>
+        <div class="note">Bei einer paginierten Liste wird nur der sichtbare Seitenausschnitt neu angeordnet und anschlie&szlig;end wieder korrekt in die globale Reihenfolge eingesetzt.</div>
+      </section>
+
+      <section class="card" id="anlegen">
+        <h2>3. Einen neuen Hinweis anlegen</h2>
+        <ol>
+          <li>Klicken Sie auf <strong>Neuen Hinweis erstellen</strong>.</li>
+          <li>Vergeben Sie einen <strong>internen Titel</strong>.</li>
+          <li>Tragen Sie den gew&uuml;nschten Inhalt ein.</li>
+          <li>W&auml;hlen Sie Darstellungsart und Anzeigeh&auml;ufigkeit.</li>
+          <li>W&auml;hlen Sie bei Bedarf Seiten und Kundengruppen.</li>
+          <li>Aktivieren Sie den Hinweis.</li>
+          <li>Speichern Sie den Eintrag.</li>
+        </ol>
+
+        <h3>Grundeinstellungen</h3>
+        <table class="table">
+          <tr><th>Feld</th><th>Bedeutung</th></tr>
+          <tr><td>Interner Titel</td><td>Pflichtfeld f&uuml;r die Admin&uuml;bersicht. Wird im Frontend nicht ausgegeben.</td></tr>
+          <tr><td>Start / Ende</td><td>Optionaler Zeitraum, in dem der Hinweis angezeigt werden darf.</td></tr>
+          <tr><td>Sortierposition</td><td>Bestimmt die Reihenfolge mehrerer Hinweise.</td></tr>
+          <tr><td>Besucher</td><td>Alle Besucher, nur G&auml;ste oder nur eingeloggte Kunden.</td></tr>
+          <tr><td>Aktiv</td><td>Nur aktive Hinweise werden im Shop ber&uuml;cksichtigt.</td></tr>
+          <tr><td>Schlie&szlig;bar</td><td>Zeigt eine Schlie&szlig;funktion f&uuml;r den Besucher.</td></tr>
+          <tr><td>Countdown anzeigen</td><td>Zeigt einen Countdown bis zum eingestellten Endzeitpunkt.</td></tr>
+          <tr><td>Von Google-Suchergebnis-Snippets ausschlie&szlig;en</td><td>Setzt <span class="kbd">data-nosnippet</span> am Hinweiscontainer.</td></tr>
+        </table>
+
+        <h3>Speichern oder weiter bearbeiten</h3>
+        <ul>
+          <li><strong>Speichern:</strong> speichert den Hinweis und kehrt zur &Uuml;bersicht zur&uuml;ck.</li>
+          <li><strong>Speichern &amp; weiter bearbeiten:</strong> speichert den aktuellen Stand und bleibt direkt im Hinweis.</li>
+        </ul>
+      </section>
+
+      <section class="card" id="inhalte">
+        <h2>4. Mehrsprachige Inhalte</h2>
+        <p>F&uuml;r jede aktive Shopsprache steht ein eigener Sprachbereich zur Verf&uuml;gung.</p>
+        <p>Die Moduloberfl&auml;che selbst wird mit Sprachdateien f&uuml;r Deutsch, Englisch, Franz&ouml;sisch, Italienisch, Spanisch, Niederl&auml;ndisch und Polnisch geliefert. Die Hinweis-Inhalte k&ouml;nnen unabh&auml;ngig davon f&uuml;r alle im Shop aktivierten Sprachen gepflegt werden.</p>
+        <table class="table">
+          <tr><th>Feld</th><th>Verwendung</th></tr>
+          <tr><td>Frontend-&Uuml;berschrift</td><td>Optionale sichtbare &Uuml;berschrift des Hinweises.</td></tr>
+          <tr><td>Inhalt</td><td>Eigentlicher Hinweistext; bei aktiviertem Shopeditor mit WYSIWYG-Unterst&uuml;tzung.</td></tr>
+          <tr><td>Button-Text</td><td>Beschriftung eines optionalen Aktionsbuttons.</td></tr>
+          <tr><td>Button-URL</td><td>Zieladresse des Buttons.</td></tr>
+        </table>
+        <div class="note">Der interne Titel ist absichtlich nicht mehrsprachig. Er dient ausschlie&szlig;lich der eindeutigen Organisation im Adminbereich.</div>
+      </section>
+
+      <section class="card" id="darstellung">
+        <h2>5. Darstellung und Templates</h2>
+        <p>Die Darstellungsart bestimmt, wie der Hinweis im Shop erscheint.</p>
+        <table class="table">
+          <tr><th>Darstellungsart</th><th>Typische Verwendung</th></tr>
+          <tr><td>Hinweis</td><td>normaler Hinweis direkt im Seiteninhalt</td></tr>
+          <tr><td>Wichtiger Hinweis</td><td>st&auml;rker hervorgehobene Meldung</td></tr>
+          <tr><td>Top-Bar</td><td>auff&auml;llige Hinweisleiste im oberen Bereich</td></tr>
+          <tr><td>Modal</td><td>Popup f&uuml;r besonders wichtige Informationen</td></tr>
+          <tr><td>Toast</td><td>kompakter schwebender Hinweis am Bildschirmrand</td></tr>
+        </table>
+
+        <h3>Template ausw&auml;hlen</h3>
+        <p>Im Feld <strong>Template</strong> k&ouml;nnen nur Vorlagen ausgew&auml;hlt werden, die tats&auml;chlich vorhanden sind. Freie Dateinamen k&ouml;nnen nicht eingegeben werden.</p>
+        <p>Bei <strong>Automatisch passend zur Darstellungsart</strong> verwendet das Modul die zugeh&ouml;rige Standardvorlage:</p>
+        <ul>
+          <li><span class="kbd">notice.html</span></li>
+          <li><span class="kbd">important.html</span></li>
+          <li><span class="kbd">topbar.html</span></li>
+          <li><span class="kbd">modal.html</span></li>
+          <li><span class="kbd">toast.html</span></li>
+        </ul>
+
+        <h3>Toast-Position</h3>
+        <p>Bei der Darstellungsart <strong>Toast</strong> stehen sechs Positionen zur Verf&uuml;gung:</p>
+        <ul>
+          <li>oben links, oben mittig, oben rechts</li>
+          <li>unten links, unten mittig, unten rechts</li>
+        </ul>
+        <p>Damit kann der Toast so platziert werden, dass Shopsiegel, Chat-Widgets, Scroll-to-top-Buttons oder andere feste Elemente nicht verdeckt werden.</p>
+
+        <h3>Eigene Templatevorlagen</h3>
+        <p>Eigene oder angepasste Vorlagen werden updatesicher im aktiven Shoptemplate abgelegt:</p>
+        <p><span class="kbd">templates/&lt;DEIN_TEMPLATE&gt;/module/mits_customers_notice/</span></p>
+        <p>Eine Datei mit gleichem Namen ersetzt automatisch die mitgelieferte Modulvorlage.</p>
+      </section>
+
+      <section class="card" id="platzierung">
+        <h2>6. Platzierung im Shop</h2>
+        <h3>Automatische Platzierung</h3>
+        <p>Bei <strong>Automatisch</strong> sucht das Modul den eingestellten CSS-Selektor im Shoptemplate und f&uuml;gt den Hinweis dort ein.</p>
+        <p>Bleibt das Feld <strong>CSS-Selektor</strong> leer, wird die Selektorliste aus den Moduleinstellungen verwendet.</p>
+
+        <h3>Einf&uuml;gemethode</h3>
+        <table class="table">
+          <tr><th>Wert</th><th>Bedeutung</th></tr>
+          <tr><td>before</td><td>vor dem gefundenen Element</td></tr>
+          <tr><td>prepend</td><td>als erstes Element innerhalb des gefundenen Elements</td></tr>
+          <tr><td>append</td><td>als letztes Element innerhalb des gefundenen Elements</td></tr>
+          <tr><td>after</td><td>nach dem gefundenen Element</td></tr>
+        </table>
+
+        <h3>Manuelle Platzierung</h3>
+        <p>Bei <strong>Manuell per Smarty</strong> wird der gerenderte Hinweis nicht automatisch verschoben. Er steht im Shoptemplate &uuml;ber folgende Variable zur Verf&uuml;gung:</p>
+        <p><span class="kbd">{$MITS_CUSTOMERS_NOTICE}</span></p>
+        <div class="note">Die manuelle Platzierung ist besonders hilfreich bei stark individuellen Shoptemplates oder wenn ein Hinweis ganz gezielt an einer bestimmten Stelle erscheinen soll.</div>
+      </section>
+
+      <section class="card" id="zeit">
+        <h2>7. Zeitraum und Anzeigeh&auml;ufigkeit</h2>
+        <h3>Start und Ende</h3>
+        <p>Start- und Endzeit sind optional. Ohne Angaben ist der Hinweis zeitlich nicht eingeschr&auml;nkt. Mit einem Startzeitpunkt kann ein Hinweis vorbereitet werden, ohne ihn sp&auml;ter manuell aktivieren zu m&uuml;ssen.</p>
+
+        <h3>Anzeigeh&auml;ufigkeit</h3>
+        <table class="table">
+          <tr><th>Einstellung</th><th>Verhalten</th></tr>
+          <tr><td>Immer anzeigen</td><td>Der Hinweis kann bei jedem passenden Seitenaufruf erscheinen.</td></tr>
+          <tr><td>Einmal pro Session</td><td>Der Hinweis erscheint nur einmal innerhalb der aktuellen Browsersitzung.</td></tr>
+          <tr><td>Einmal pro Tag</td><td>Der Hinweis wird nach der ersten Anzeige f&uuml;r den aktuellen Tag unterdr&uuml;ckt.</td></tr>
+          <tr><td>Bis zum Schlie&szlig;en</td><td>Die Anzeige wird mit der Schlie&szlig;aktion des Besuchers kombiniert.</td></tr>
+        </table>
+        <div class="note">Welche Variante sinnvoll ist, h&auml;ngt vom Inhalt ab. Ein wichtiger Betriebs- oder Versandhinweis sollte h&auml;ufiger sichtbar sein als ein einmaliger Marketinghinweis.</div>
+      </section>
+
+      <section class="card" id="zielgruppen">
+        <h2>8. Seiten und Zielgruppen</h2>
+        <p>Die am h&auml;ufigsten verwendeten Einschr&auml;nkungen stehen bewusst oben: zuerst <strong>Seiten</strong>, danach <strong>Kundengruppen</strong>.</p>
+
+        <h3>Seiten</h3>
+        <p>Ein Hinweis kann auf bestimmte Shopbereiche beschr&auml;nkt werden:</p>
+        <ul>
+          <li>Startseite</li>
+          <li>Kategorie</li>
+          <li>Produktdetails</li>
+          <li>Content-Seiten</li>
+          <li>Warenkorb</li>
+          <li>Kontobereich</li>
+          <li>Checkout</li>
+          <li>Login</li>
+          <li>Konto erstellen</li>
+          <li>Suche</li>
+        </ul>
+
+        <h3>Kundengruppen</h3>
+        <p>W&auml;hlen Sie eine oder mehrere vorhandene Kundengruppen aus. Bleibt die Auswahl leer, wird die Anzeige nicht &uuml;ber die Kundengruppe eingeschr&auml;nkt.</p>
+
+        <h3>Weitere Einschr&auml;nkungen</h3>
+        <ul>
+          <li>Newsletterempf&auml;nger oder Nicht-Newsletterempf&auml;nger</li>
+          <li>einzelne Kunden-IDs</li>
+          <li>L&auml;nder</li>
+          <li>Kategorie-IDs</li>
+          <li>Artikel-IDs</li>
+          <li>Hersteller-IDs</li>
+        </ul>
+        <div class="ok"><strong>Logik der Regeln:</strong> Mehrere Werte innerhalb derselben Gruppe gelten als ODER. Verschiedene Gruppen werden miteinander als UND verkn&uuml;pft.</div>
+        <p>Beispiel: Werden die Seiten <em>Startseite</em> und <em>Warenkorb</em> ausgew&auml;hlt und zus&auml;tzlich die Kundengruppe <em>H&auml;ndler</em>, erscheint der Hinweis f&uuml;r H&auml;ndler auf der Startseite <strong>oder</strong> im Warenkorb.</p>
+      </section>
+
+      <section class="card" id="nosnippet">
+        <h2>9. data-nosnippet</h2>
+        <p>Die Option <strong>Von Google-Suchergebnis-Snippets ausschlie&szlig;en</strong> setzt das Attribut <span class="kbd">data-nosnippet</span> am &auml;u&szlig;eren Hinweiscontainer.</p>
+        <p>Das ist sinnvoll bei tempor&auml;ren Meldungen, Rabatttexten, Betriebsinformationen oder anderen Inhalten, die nicht als Textausschnitt in Suchergebnissen verwendet werden sollen.</p>
+        <div class="note"><span class="kbd">data-nosnippet</span> ist keine Seiten-Deindexierung. Die Option betrifft den markierten Hinweisbereich und nicht die grunds&auml;tzliche Indexierung der Shopseite.</div>
+      </section>
+
+      <section class="card" id="migration">
+        <h2>10. Migration des alten Kundenhinweis-Moduls</h2>
+        <p>Wird das alte Fremdmodul erkannt, erscheint in der Verwaltung eine Migrationsm&ouml;glichkeit.</p>
+        <ol>
+          <li>&Ouml;ffnen Sie zuerst die <strong>Migrationsvorschau</strong>.</li>
+          <li>Pr&uuml;fen Sie den erzeugten internen Titel, die Frontend-&Uuml;berschrift und die neue Darstellungsart.</li>
+          <li>Importieren Sie die Hinweise.</li>
+          <li>Kontrollieren Sie die importierten Eintr&auml;ge und deren Frontend-Ausgabe.</li>
+          <li>Deaktivieren Sie danach die alte Frontend-Ausgabe.</li>
+        </ol>
+        <p>Bekannte alte Vorlagen werden automatisch zugeordnet. Unbekannte eigene Legacy-Templates werden als Standard-Hinweis &uuml;bernommen und in der Vorschau zur Kontrolle markiert.</p>
+      </section>
+
+      <section class="card" id="beispiele">
+        <h2>11. Praxisbeispiele</h2>
+        <h3>Versandhinweis im Warenkorb</h3>
+        <ul>
+          <li>Darstellung: <strong>Wichtiger Hinweis</strong></li>
+          <li>Seite: <strong>Warenkorb</strong></li>
+          <li>Anzeigeh&auml;ufigkeit: <strong>Immer anzeigen</strong></li>
+          <li>Platzierung: <strong>Automatisch</strong></li>
+        </ul>
+
+        <h3>Wartungsank&uuml;ndigung f&uuml;r alle Kunden</h3>
+        <ul>
+          <li>Darstellung: <strong>Top-Bar</strong></li>
+          <li>Besucher: <strong>Alle</strong></li>
+          <li>Start und Ende passend zum Ank&uuml;ndigungszeitraum</li>
+          <li>optional Countdown bis zum Beginn oder Ende</li>
+        </ul>
+
+        <h3>Hinweis nur f&uuml;r H&auml;ndler</h3>
+        <ul>
+          <li>Besucher: <strong>Eingeloggte Kunden</strong></li>
+          <li>Kundengruppe: gew&uuml;nschte H&auml;ndler-Kundengruppe</li>
+          <li>Seite: nach Bedarf</li>
+        </ul>
+
+        <h3>Newsletter-Popup</h3>
+        <ul>
+          <li>Darstellung: <strong>Modal</strong></li>
+          <li>Besucher: <strong>Eingeloggte Kunden</strong></li>
+          <li>Newsletterstatus: <strong>Kein Newsletterempf&auml;nger</strong></li>
+          <li>Anzeigeh&auml;ufigkeit: <strong>Einmal pro Session</strong></li>
+        </ul>
+
+        <h3>Kompakter Hinweis ohne Siegel zu verdecken</h3>
+        <ul>
+          <li>Darstellung: <strong>Toast</strong></li>
+          <li>Toast-Position so w&auml;hlen, dass vorhandene Siegel oder Widgets frei bleiben</li>
+          <li>auf Desktop und Smartphone kurz kontrollieren</li>
+        </ul>
+      </section>
+
+      <section class="card" id="tipps">
+        <h2>12. Tipps und Fehlersuche</h2>
+        <h3>Hinweis wird nicht angezeigt</h3>
+        <ul>
+          <li>Status des Hinweises pr&uuml;fen</li>
+          <li>Start- und Endzeit pr&uuml;fen</li>
+          <li>Seiten- und Kundengruppenfilter pr&uuml;fen</li>
+          <li>Anzeigeh&auml;ufigkeit beachten</li>
+          <li>bei automatischer Platzierung CSS-Selektor pr&uuml;fen</li>
+          <li>bei Asset-Modus <strong>manual</strong> kontrollieren, ob CSS und JavaScript wirklich vom Template geladen werden</li>
+        </ul>
+
+        <h3>Hinweis sitzt an der falschen Stelle</h3>
+        <p>Tragen Sie einen eigenen CSS-Selektor ein und testen Sie die Einf&uuml;gemethoden <span class="kbd">before</span>, <span class="kbd">prepend</span>, <span class="kbd">append</span> oder <span class="kbd">after</span>. Alternativ kann die manuelle Smarty-Platzierung verwendet werden.</p>
+
+        <h3>Design soll angepasst werden</h3>
+        <p>Bearbeiten Sie nach M&ouml;glichkeit nicht die Moduldateien. Legen Sie stattdessen Template-Overrides und bei Bedarf eine eigene <span class="kbd">mits_customers_notice.css</span> im aktiven Shoptemplate an.</p>
+
+        <h3>Mehrere Toasts</h3>
+        <p>Mehrere Toasts an derselben Position werden automatisch gestaffelt. Trotzdem sollten gleichzeitig sichtbare Toasts sparsam eingesetzt werden.</p>
+
+        <div class="warn">Testen Sie neue Hinweise zuerst mit einer engen Seiten- oder Zielgruppenauswahl. Nach erfolgreicher Kontrolle kann der Hinweis f&uuml;r den eigentlichen Einsatz erweitert werden.</div>
+      </section>
+    </main>
+  </div>
+
+  <div class="footer">MITS Kundenhinweise - Bedienungsanleitung - Version 1.0.6</div>
+</div>
+</body>
+</html>

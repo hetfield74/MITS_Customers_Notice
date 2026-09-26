@@ -1,0 +1,9 @@
+<div class="mits-cn-topbar">
+  <div class="mits-cn-topbar-inner">
+    {if $title != ''}<strong class="mits-cn-title">{$title}</strong>{/if}
+    {if $content != ''}<span class="mits-cn-content">{$content}</span>{/if}
+    {if $countdown}<span class="mits-cn-countdown" data-mits-cn-countdown data-end="{$end_timestamp}" data-days="{$label_days}" data-hours="{$label_hours}" data-minutes="{$label_minutes}" data-seconds="{$label_seconds}"></span>{/if}
+    {if $button_text != '' && $button_url != ''}<a class="mits-cn-button" href="{$button_url}">{$button_text}</a>{/if}
+  </div>
+  {if $dismissible}<button type="button" class="mits-cn-close" data-mits-cn-close aria-label="{$label_close}">&times;</button>{/if}
+</div>
