@@ -3,7 +3,6 @@
 (c) Copyright 2026 by Hetfield - MerZ IT-SerVice
 
 * **Author:** Hetfield - https://www.merz-it-service.de
-* **Modulversion:** 1.0.6
 * **Shopversion:** modified eCommerce Shopsoftware ab Version 2.0.6.0
 * **PHP:** 8.x
 
