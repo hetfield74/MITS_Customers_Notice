@@ -28,7 +28,7 @@ class MITS_Customers_Notice
     {
         $this->code = 'MITS_Customers_Notice';
         $this->name = 'MODULE_' . strtoupper($this->code);
-        $this->version = '1.0.6';
+        $this->version = '1.0.7';
         $this->sort_order = defined($this->name . '_SORT_ORDER') ? constant($this->name . '_SORT_ORDER') : 0;
         $this->enabled = defined($this->name . '_STATUS') && constant($this->name . '_STATUS') === 'true';
         $this->default_columns = 'configuration_key, configuration_value, configuration_group_id, sort_order, set_function';
@@ -52,6 +52,13 @@ class MITS_Customers_Notice
 
         if (!$this->enabled && defined($this->name . '_DELETE_MODUL') && defined($this->name . '_CONFIRM_DELETE_MODUL')) {
             $this->description .= '<div style="text-align:center;margin:30px 0"><a class="button but_red" style="text-align:center;" onclick="return confirmLink(\'' . constant($this->name . '_CONFIRM_DELETE_MODUL') . '\', \'\' ,this);" href="' . xtc_href_link(FILENAME_MODULE_EXPORT, 'set=system&module=' . $this->code . '&action=custom') . '">' . constant($this->name . '_DELETE_MODUL') . '</a></div><br>';
+        }
+
+        $mitsUpdateClientFile = DIR_FS_CATALOG . 'includes/external/mits_module_update_client/MitsModuleUpdateClient.php';
+
+        if (is_file($mitsUpdateClientFile)) {
+            require_once $mitsUpdateClientFile;
+            MitsModuleUpdateClient::integrate($this);
         }
     }
 
