@@ -14,6 +14,21 @@
 require_once 'includes/application_top.php';
 require_once DIR_FS_INC . 'xtc_wysiwyg.inc.php';
 
+if (empty($_SESSION['MITS_CN_CSRF'])) {
+    $_SESSION['MITS_CN_CSRF'] = bin2hex(random_bytes(24));
+}
+
+function mits_cn_csrf_field(): string
+{
+    return '<input type="hidden" name="mits_cn_csrf" value="' . htmlspecialchars((string)$_SESSION['MITS_CN_CSRF'], ENT_QUOTES, 'UTF-8') . '">';
+}
+
+function mits_cn_csrf_valid(): bool
+{
+    return isset($_POST['mits_cn_csrf']) && is_string($_POST['mits_cn_csrf'])
+        && hash_equals((string)$_SESSION['MITS_CN_CSRF'], $_POST['mits_cn_csrf']);
+}
+
 function mits_cn_text(string $constant, string $fallback): string
 {
     return defined($constant) ? (string)constant($constant) : $fallback;
@@ -390,6 +405,10 @@ $listParams = array('search' => $search, 'status' => $statusFilter, 'type' => $t
 $listQueryString = mits_cn_query($listParams);
 
 if ($schemaReady) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && in_array($action, array('toggle', 'sort', 'delete_confirm', 'save', 'migrate'), true) && !mits_cn_csrf_valid()) {
+        http_response_code(403);
+        exit('Invalid security token. Please reload the page.');
+    }
     if ($action === 'toggle' && $_SERVER['REQUEST_METHOD'] === 'POST' && $noticeId > 0) {
         $flag = isset($_POST['flag']) && (int)$_POST['flag'] === 1 ? 1 : 0;
         xtc_db_query("UPDATE " . TABLE_MITS_CUSTOMERS_NOTICE . " SET status = " . $flag . ", updated_at = NOW() WHERE notice_id = " . $noticeId);
@@ -728,6 +747,7 @@ if ($editMode && defined('USE_WYSIWYG') && USE_WYSIWYG == 'true') {
     <div class="mits-cn-alert mits-cn-alert--warning"><strong><?php echo mits_cn_text('MITS_CN_MODULE_UPDATE_TITLE', 'Module update required'); ?></strong><br><?php echo mits_cn_text('MITS_CN_MODULE_UPDATE_TEXT', 'Please run the update for the MITS Customer Notices system module. The new internal title field is required.'); ?></div>
   <?php } elseif ($editMode) { ?>
     <?php echo xtc_draw_form('mits_cn_notice', FILENAME_MITS_CUSTOMERS_NOTICE, 'action=save' . ($listQueryString !== '' ? '&' . $listQueryString : ''), 'post', 'id="mits-cn-edit-form"'); ?>
+      <?php echo mits_cn_csrf_field(); ?>
       <input type="hidden" name="notice_id" value="<?php echo (int)$notice['notice_id']; ?>">
       <div class="mits-cn-edit-layout">
         <div class="mits-cn-edit-main">
@@ -865,7 +885,7 @@ if ($editMode && defined('USE_WYSIWYG') && USE_WYSIWYG == 'true') {
             </tr>
         <?php } ?>
       </tbody></table></div>
-      <div class="mits-cn-card__body" style="border-top:1px solid var(--mits-ci-line)"><?php echo xtc_draw_form('mits_cn_migrate', FILENAME_MITS_CUSTOMERS_NOTICE, 'action=migrate', 'post', 'class="mits-cn-inline-form" onsubmit="return confirm(\'' . mits_cn_h(mits_cn_text('MITS_CN_MIGRATION_CONFIRM', 'Import legacy data now?')) . '\');"'); ?><button class="mits-cn-button" type="submit"><?php echo mits_cn_text('MITS_CN_BUTTON_MIGRATE', 'Import legacy customer notices'); ?></button></form></div>
+      <div class="mits-cn-card__body" style="border-top:1px solid var(--mits-ci-line)"><?php echo xtc_draw_form('mits_cn_migrate', FILENAME_MITS_CUSTOMERS_NOTICE, 'action=migrate', 'post', 'class="mits-cn-inline-form" onsubmit="return confirm(\'' . mits_cn_h(mits_cn_text('MITS_CN_MIGRATION_CONFIRM', 'Import legacy data now?')) . '\');"'); ?><?php echo mits_cn_csrf_field(); ?><button class="mits-cn-button" type="submit"><?php echo mits_cn_text('MITS_CN_BUTTON_MIGRATE', 'Import legacy customer notices'); ?></button></form></div>
     </div>
   <?php } else { ?>
     <div class="mits-cn-stats">
@@ -983,13 +1003,13 @@ if ($editMode && defined('USE_WYSIWYG') && USE_WYSIWYG == 'true') {
             <tr data-notice-id="<?php echo $id; ?>">
               <td class="mits-cn-drag-cell"><?php if ($dragEnabled) { ?><span class="mits-cn-drag" draggable="true" title="<?php echo mits_cn_h(mits_cn_text('MITS_CN_DRAG_HANDLE', 'Drag to sort')); ?>">&#8942;&#8942;</span><?php } ?></td>
               <td><div class="mits-cn-title-main"><?php echo mits_cn_h($row['internal_title']); ?></div><div class="mits-cn-title-meta"><?php echo !empty($row['frontend_title']) ? mits_cn_text('MITS_CN_FRONTEND_SHORT', 'Storefront') . ': ' . mits_cn_h($row['frontend_title']) : mits_cn_text('MITS_CN_NO_FRONTEND_TITLE', 'no storefront headline'); ?><?php echo $row['legacy_notice_id'] ? '<br>Legacy-ID #' . (int)$row['legacy_notice_id'] : ''; ?></div></td>
-              <td><?php echo xtc_draw_form('mits_cn_toggle_' . $id, FILENAME_MITS_CUSTOMERS_NOTICE, mits_cn_query(array_merge($listParams, array('action' => 'toggle'))), 'post', 'class="mits-cn-inline-form"'); ?><input type="hidden" name="nid" value="<?php echo $id; ?>"><input type="hidden" name="flag" value="<?php echo $isActive ? '0' : '1'; ?>"><button type="submit" class="mits-cn-status-toggle" title="<?php echo mits_cn_h(mits_cn_text('MITS_CN_STATUS_TOGGLE', 'Change status')); ?>"><span class="mits-cn-badge <?php echo $isActive ? 'mits-cn-badge--current' : 'mits-cn-badge--off'; ?>"><?php echo $isActive ? mits_cn_text('MITS_CN_STATUS_ACTIVE', 'Active') : mits_cn_text('MITS_CN_STATUS_INACTIVE', 'Inactive'); ?></span></button></form></td>
+              <td><?php echo xtc_draw_form('mits_cn_toggle_' . $id, FILENAME_MITS_CUSTOMERS_NOTICE, mits_cn_query(array_merge($listParams, array('action' => 'toggle'))), 'post', 'class="mits-cn-inline-form"'); ?><?php echo mits_cn_csrf_field(); ?><input type="hidden" name="nid" value="<?php echo $id; ?>"><input type="hidden" name="flag" value="<?php echo $isActive ? '0' : '1'; ?>"><button type="submit" class="mits-cn-status-toggle" title="<?php echo mits_cn_h(mits_cn_text('MITS_CN_STATUS_TOGGLE', 'Change status')); ?>"><span class="mits-cn-badge <?php echo $isActive ? 'mits-cn-badge--current' : 'mits-cn-badge--off'; ?>"><?php echo $isActive ? mits_cn_text('MITS_CN_STATUS_ACTIVE', 'Active') : mits_cn_text('MITS_CN_STATUS_INACTIVE', 'Inactive'); ?></span></button></form></td>
               <td><div class="mits-cn-badges"><span class="mits-cn-badge"><?php echo mits_cn_h(mits_cn_type_label((string)$row['display_type'])); ?></span><span class="mits-cn-badge mits-cn-badge--off"><?php echo mits_cn_h(mits_cn_frequency_label((string)$row['frequency'])); ?></span></div></td>
               <td><?php echo mits_cn_h(mits_cn_audience_label((string)$row['audience'])); ?></td>
               <td><div class="mits-cn-badges"><span class="mits-cn-badge mits-cn-badge--<?php echo $timeClass; ?>"><?php echo mits_cn_h($timeLabel); ?></span></div><div class="mits-cn-title-meta"><?php echo mits_cn_date_for_list($row['start_at']); ?> &rarr; <?php echo mits_cn_date_for_list($row['end_at']); ?></div></td>
               <td><span class="mits-cn-badge"><?php echo (int)$row['target_count']; ?></span></td>
               <td><?php echo (int)$row['sort_order']; ?></td>
-              <td><div class="mits-cn-actions"><a class="mits-cn-button mits-cn-button--soft mits-cn-button--small" href="<?php echo xtc_href_link(FILENAME_MITS_CUSTOMERS_NOTICE, mits_cn_query(array_merge($listParams, array('action' => 'edit', 'nid' => $id)))); ?>"><?php echo mits_cn_text('MITS_CN_BUTTON_EDIT', 'Edit'); ?></a><?php echo xtc_draw_form('mits_cn_delete_' . $id, FILENAME_MITS_CUSTOMERS_NOTICE, mits_cn_query(array_merge($listParams, array('action' => 'delete_confirm'))), 'post', 'class="mits-cn-inline-form" onsubmit="return confirm(\'' . mits_cn_h(mits_cn_text('MITS_CN_DELETE_CONFIRM', 'Delete this notice?')) . '\');"'); ?><input type="hidden" name="nid" value="<?php echo $id; ?>"><button class="mits-cn-button mits-cn-button--danger mits-cn-button--small" type="submit"><?php echo mits_cn_text('MITS_CN_BUTTON_DELETE', 'Delete'); ?></button></form></div></td>
+              <td><div class="mits-cn-actions"><a class="mits-cn-button mits-cn-button--soft mits-cn-button--small" href="<?php echo xtc_href_link(FILENAME_MITS_CUSTOMERS_NOTICE, mits_cn_query(array_merge($listParams, array('action' => 'edit', 'nid' => $id)))); ?>"><?php echo mits_cn_text('MITS_CN_BUTTON_EDIT', 'Edit'); ?></a><?php echo xtc_draw_form('mits_cn_delete_' . $id, FILENAME_MITS_CUSTOMERS_NOTICE, mits_cn_query(array_merge($listParams, array('action' => 'delete_confirm'))), 'post', 'class="mits-cn-inline-form" onsubmit="return confirm(\'' . mits_cn_h(mits_cn_text('MITS_CN_DELETE_CONFIRM', 'Delete this notice?')) . '\');"'); ?><?php echo mits_cn_csrf_field(); ?><input type="hidden" name="nid" value="<?php echo $id; ?>"><button class="mits-cn-button mits-cn-button--danger mits-cn-button--small" type="submit"><?php echo mits_cn_text('MITS_CN_BUTTON_DELETE', 'Delete'); ?></button></form></div></td>
             </tr>
           <?php } ?>
           </tbody>
@@ -1004,7 +1024,7 @@ if ($editMode && defined('USE_WYSIWYG') && USE_WYSIWYG == 'true') {
     </div>
 
     <?php if ($dragEnabled && $resultCount > 1) { ?>
-      <?php echo xtc_draw_form('mits_cn_sort_form', FILENAME_MITS_CUSTOMERS_NOTICE, 'action=sort', 'post', 'id="mits-cn-sort-form" style="display:none"'); ?><input type="hidden" name="sort_page" value="<?php echo (int)$page; ?>"><div id="mits-cn-sort-fields"></div></form>
+      <?php echo xtc_draw_form('mits_cn_sort_form', FILENAME_MITS_CUSTOMERS_NOTICE, 'action=sort', 'post', 'id="mits-cn-sort-form" style="display:none"'); ?><?php echo mits_cn_csrf_field(); ?><input type="hidden" name="sort_page" value="<?php echo (int)$page; ?>"><div id="mits-cn-sort-fields"></div></form>
     <?php } ?>
   <?php } ?>
 </div>

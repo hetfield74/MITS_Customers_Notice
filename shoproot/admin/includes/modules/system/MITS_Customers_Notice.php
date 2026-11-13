@@ -28,7 +28,7 @@ class MITS_Customers_Notice
     {
         $this->code = 'MITS_Customers_Notice';
         $this->name = 'MODULE_' . strtoupper($this->code);
-        $this->version = '1.0.8';
+        $this->version = '1.0.9';
         $this->sort_order = defined($this->name . '_SORT_ORDER') ? constant($this->name . '_SORT_ORDER') : 0;
         $this->enabled = defined($this->name . '_STATUS') && constant($this->name . '_STATUS') === 'true';
         $this->default_columns = 'configuration_key, configuration_value, configuration_group_id, sort_order, set_function';
